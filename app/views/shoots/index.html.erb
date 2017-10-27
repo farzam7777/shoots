@@ -1,2 +1,33 @@
-<h1>Shoots#index</h1>
-<p>Find me in app/views/shoots/index.html.erb</p>
+<div class="container">
+
+	<div class="row">
+		<h1 class="pull-left"> Shoots </h1>
+		<p class="pull-right new-shoot"> 
+			<%= link_to 'Create New Shoot', new_admin_shoot_path, target: '_blank', style: 'color: white' %>  
+		</p>
+	</div>
+
+	<div id="shoots">
+		<h2 id="month">
+	    <%= link_to "<", date: @date.prev_month %>
+	    <span class="current_month"> <%= @date.strftime("%B %Y") %> </span>
+	    <%= link_to ">", date: @date.next_month %>
+	  </h2>
+	  <%= calendar @date do |date| %>
+	    <%= date.day %>
+	    <% if @shoots_by_date[date] %>
+	      <ul>
+	        <% @shoots_by_date[date].each do |shoot| %>
+	          <li><%= link_to shoot.title, [:admin, shoot], target: '_blank' , class: 'shoot-title' %></li>
+        	<% end %>
+	      </ul>
+	    <% end %>
+	  <% end %>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('.day-click').on('click', function() {
+		window.open('<%= new_admin_shoot_path %>', '_blank');
+	});
+</script>
