@@ -30,4 +30,8 @@
 	$('.day-click').on('click', function() {
 		window.open('<%= new_admin_shoot_path %>', '_blank');
 	});
+
+	$('.shoot-title').on('click', function() {
+		window.open($(this).attr('href'), '_blank');
+	});
 </script>
