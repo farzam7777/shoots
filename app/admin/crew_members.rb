@@ -11,7 +11,7 @@ ActiveAdmin.register CrewMember do
       f.input :phone
       f.input :email
       f.input :image, :as => :file, :hint => f.object.image.present? \
-      ? image_tag(f.object.logo.url(:thumb))
+      ? image_tag(f.object.image.url(:thumb))
       : content_tag(:span, "no Image yet")
     end
     f.button :Submit
